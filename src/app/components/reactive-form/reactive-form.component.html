@@ -1,0 +1,46 @@
+
+
+<div class="registration-form">
+  <h2>Registration Form</h2>
+  <form [formGroup]="ReactiveForm" (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <label for="firstName">First Name:</label>
+      <input type="text" id="firstName" formControlName="firstName" required>
+      <span style="color: red;" *ngIf="ReactiveForm.get('firstName')?.errors?.['required']  && ReactiveForm.get('firstName')?.touched && ReactiveForm.get('firstName').invalid">First name is required</span>
+      <br>
+      <span style="color: red;" *ngIf="ReactiveForm.get('firstName')?.errors?.['noSpaceValidator'] ">First name cannot contains space</span>
+    </div>
+
+    <div class="form-group">
+      <label for="lastName">Last Name:</label>
+      <input type="text" id="lastName" formControlName="lastName" required>
+      <span style="color: red;" *ngIf="ReactiveForm.get('lastName')?.errors?.['noSpaceValidator'] ">Second name cannot contains space</span>
+    </div>
+
+    <div class="form-group">
+      <label for="email">Email:</label>
+      <input type="email" id="email" formControlName="email" required>
+      <span style="color: red;"*ngIf="!ReactiveForm.get('email')?.valid && ReactiveForm.get('email')?.touched">
+      Choose valid Email Address</span>
+    </div>
+
+    <div class="form-group">
+      <label for="phoneNumber">Phone Number:</label>
+      <input type="text" formControlName="phoneNumber" />
+      <span style="color: red;"*ngIf="ReactiveForm.get('phoneNumber').errors?.['invalidPhoneNumber'] && ReactiveForm.get('phoneNumber')?.touched">
+        Add country code</span>
+    </div>
+
+    <div class="form-group">
+      <label for="password">Password:</label>
+      <input type="password" id="password" formControlName="password" required>
+      <span style="color: red;" *ngIf="ReactiveForm.get('password')?.errors?.['noNumber'] && ReactiveForm.get('password')?.touched">Password must contain at least one number</span><br>
+      <span style="color: red;" *ngIf="ReactiveForm.get('password')?.errors?.['noSpecial'] && ReactiveForm.get('password')?.touched">Include at least one special character</span><br>
+      <span style="color: red;" *ngIf="ReactiveForm.get('password')?.errors?.['minNumber'] && ReactiveForm.get('password')?.touched">Password must be at least 8 characters long</span>
+    </div>
+
+    <button type="submit">Submit</button>
+  </form>
+</div>
+
+
